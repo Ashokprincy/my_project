@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }} - My App{% endblock %}
+{% block content %}
+<a href="/" style="color:#e94560;">← Back to Products</a>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:1.5rem; background:white; padding:2rem; border-radius:10px;">
+    <div>
+        {% if product.image %}<img src="{{ product.image.url }}" style="width:100%; border-radius:8px;">
+        {% else %}<div class="no-img" style="height:300px;">No Image</div>{% endif %}
+        {% if product.additional_images.all %}
+        <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+            {% for img in product.additional_images.all %}
+            <img src="{{ img.image.url }}" style="height:70px; width:70px; object-fit:cover; border-radius:4px;">
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div>
+        {% if product.category %}<span class="badge">{{ product.category.name }}</span>{% endif %}
+        <h1 style="margin:0.5rem 0;">{{ product.name }}</h1>
+        <p class="price" style="font-size:1.8rem;">${{ product.price }}</p>
+        <p style="color:#888;">In Stock: {{ product.stock }}</p>
+        <hr style="margin:1rem 0;">
+        <p>{{ product.description }}</p>
+    </div>
+</div>
+{% endblock %}

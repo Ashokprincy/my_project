@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
+        nav { background: #1a1a2e; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: white; text-decoration: none; font-size: 1.3rem; font-weight: bold; }
+        nav .admin-link { background: #e94560; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.9rem; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+        .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-4px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 1rem; }
+        .card-body h3 { margin-bottom: 0.5rem; }
+        .price { color: #e94560; font-size: 1.2rem; font-weight: bold; }
+        .badge { display: inline-block; background: #e8f4fd; color: #1a6fb3; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; margin-bottom: 0.5rem; }
+        .no-img { height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; color: #888; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">🛍️ My App</a>
+        <a href="/admin/" class="admin-link">Admin Panel</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

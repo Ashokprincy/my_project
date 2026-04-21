@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Products - My App{% endblock %}
+{% block content %}
+<h2 style="margin-bottom:1.5rem;">All Products</h2>
+{% if categories %}
+<div style="margin-bottom:1.5rem;">
+    <a href="/" style="margin-right:0.5rem; padding:0.3rem 0.8rem; background:#eee; border-radius:20px; text-decoration:none;">All</a>
+    {% for cat in categories %}
+    <a href="?category={{ cat.slug }}" style="margin-right:0.5rem; padding:0.3rem 0.8rem; background:#eee; border-radius:20px; text-decoration:none;">{{ cat.name }}</a>
+    {% endfor %}
+</div>
+{% endif %}
+<div class="grid">
+{% for product in products %}
+<div class="card">
+    <a href="/product/{{ product.slug }}/">
+    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}<div class="no-img">No Image</div>{% endif %}
+    </a>
+    <div class="card-body">
+        {% if product.category %}<span class="badge">{{ product.category.name }}</span>{% endif %}
+        <h3>{{ product.name }}</h3>
+        <p class="price">${{ product.price }}</p>
+        <p style="color:#888; font-size:0.9rem;">Stock: {{ product.stock }}</p>
+    </div>
+</div>
+{% empty %}
+<p>No products yet. <a href="/admin/products/product/add/">Add one from admin panel.</a></p>
+{% endfor %}
+</div>
+{% endblock %}
