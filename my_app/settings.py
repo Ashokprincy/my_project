@@ -2,8 +2,9 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-change-this-in-production-xyz123'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+DEBUG = False
+ 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -67,7 +68,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+ 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
